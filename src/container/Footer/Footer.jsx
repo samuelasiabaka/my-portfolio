@@ -24,10 +24,10 @@ const Footer = () => {
 
     emailjs
       .sendForm(
-        'service_hntvhyp',
-        'template_7dn769g',
+        process.env.SERVICE_ID,
+        process.env.TEMPLATE_ID,
         form.current,
-        '7W6MZvcKuz_npwitf',
+        process.env.PUBLIC_KEY,
       )
       .then(
         (result) => {
