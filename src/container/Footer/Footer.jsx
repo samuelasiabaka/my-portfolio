@@ -1,45 +1,49 @@
-import React, { useState, useRef } from 'react'
-import emailjs from '@emailjs/browser'
+import React, { useState, useRef } from "react";
+import emailjs from "@emailjs/browser";
 
-import { images } from '../../constants'
-import { AppWrap, MotionWrap } from '../../wrapper'
+import { images } from "../../constants";
+import { AppWrap, MotionWrap } from "../../wrapper";
 
-import './Footer.scss'
+import "./Footer.scss";
 
 const Footer = () => {
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' })
-  const [isFormSubmitted, setIsFormSubmitted] = useState(false)
-  const [loading, setLoading] = useState(false)
-  const form = useRef()
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const form = useRef();
 
-  const { username, email, message } = formData
+  const { username, email, message } = formData;
 
   const handleChangeInput = (e) => {
-    const { name, value } = e.target
-    setFormData({ ...formData, [name]: value })
-  }
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
 
   const handleSubmit = () => {
-    setLoading(true)
+    setLoading(true);
 
     emailjs
       .sendForm(
         process.env.SERVICE_ID,
         process.env.TEMPLATE_ID,
         form.current,
-        process.env.PUBLIC_KEY,
+        process.env.PUBLIC_KEY
       )
       .then(
         (result) => {
-          setLoading(false)
-          setIsFormSubmitted(true)
-          console.log(result.text)
+          setLoading(false);
+          setIsFormSubmitted(true);
+          console.log(result.text);
         },
         (error) => {
-          console.log(error.text)
-        },
-      )
-  }
+          console.log(error.text);
+        }
+      );
+  };
 
   return (
     <>
@@ -96,8 +100,13 @@ const Footer = () => {
               onChange={handleChangeInput}
             />
           </div>
-          <button type="button" className="p-text" onClick={handleSubmit}>
-            {!loading ? 'Send Message' : 'Sending...'}
+          <button
+            type="button"
+            disabled={!username && !email && !message}
+            className="p-text"
+            onClick={handleSubmit}
+          >
+            {!loading ? "Send Message" : "Sending..."}
           </button>
         </form>
       ) : (
@@ -106,11 +115,11 @@ const Footer = () => {
         </div>
       )}
     </>
-  )
-}
+  );
+};
 
 export default AppWrap(
-  MotionWrap(Footer, 'app__footer'),
-  'contact',
-  'app__whitebg',
-)
+  MotionWrap(Footer, "app__footer"),
+  "contact",
+  "app__whitebg"
+);

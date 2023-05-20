@@ -1,22 +1,22 @@
-import React, { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
-import ReactTooltip from 'react-tooltip'
+import React, { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import ReactTooltip from "react-tooltip";
 
-import { AppWrap, MotionWrap } from '../../wrapper'
+import { AppWrap, MotionWrap } from "../../wrapper";
 
-import { skillData, workData } from './skillsData'
+import { skillData, workData } from "./skillsData";
 
-import './Skills.scss'
+import "./Skills.scss";
 
 const Skills = () => {
-  const [experiences, setExperiences] = useState([])
-  const [skills, setSkills] = useState([])
+  const [experiences, setExperiences] = useState([]);
+  const [skills, setSkills] = useState([]);
 
   useEffect(() => {
-    setExperiences(workData)
+    setExperiences(workData);
 
-    setSkills(skillData)
-  }, [])
+    setSkills(skillData);
+  }, []);
 
   return (
     <>
@@ -42,48 +42,55 @@ const Skills = () => {
           ))}
         </motion.div>
         <div className="app__skills-exp">
-          {experiences.map((experience) => (
-            <motion.div className="app__skills-exp-item" key={experience.year}>
-              <div className="app__skills-exp-year">
-                <p className="bold-text">{experience.year}</p>
-              </div>
-              <motion.div className="app__skills-exp-works">
-                {experience.works.map((work) => (
-                  <>
-                    <motion.div
-                      whileInView={{ opacity: [0, 1] }}
-                      transition={{ duration: 0.5 }}
-                      className="app__skills-exp-work"
-                      data-tip
-                      data-for={work.title}
-                      key={work.title}
-                    >
-                      <h4 className="bold-text">{work.title}</h4>
-                      <p className="p-text">{work.company}</p>
-                    </motion.div>
-                    <ReactTooltip
-                      id={work.title}
-                      effect="solid"
-                      arrowColor="#fff"
-                      className="skills-tooltip"
-                    >
-                      {work.description}
-                    </ReactTooltip>
-                  </>
-                ))}
+          {experiences
+            .sort(function (a, b) {
+              return b.year - a.year;
+            })
+            .map((experience) => (
+              <motion.div
+                className="app__skills-exp-item"
+                key={experience.year}
+              >
+                <div className="app__skills-exp-year">
+                  <p className="bold-text">{experience.year}</p>
+                </div>
+                <motion.div className="app__skills-exp-works">
+                  {experience.works.map((work) => (
+                    <>
+                      <motion.div
+                        whileInView={{ opacity: [0, 1] }}
+                        transition={{ duration: 0.5 }}
+                        className="app__skills-exp-work"
+                        data-tip
+                        data-for={work.title}
+                        key={work.title}
+                      >
+                        <h4 className="bold-text">{work.title}</h4>
+                        <p className="p-text">{work.company}</p>
+                      </motion.div>
+                      <ReactTooltip
+                        id={work.title}
+                        effect="solid"
+                        arrowColor="#fff"
+                        className="skills-tooltip"
+                      >
+                        {work.description}
+                      </ReactTooltip>
+                    </>
+                  ))}
+                </motion.div>
               </motion.div>
-            </motion.div>
-          ))}
+            ))}
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
 // export default AppWrap(Skills, 'skills')
 
 export default AppWrap(
-  MotionWrap(Skills, 'app__skills'),
-  'skills',
-  'app__whitebg',
-)
+  MotionWrap(Skills, "app__skills"),
+  "skills",
+  "app__whitebg"
+);

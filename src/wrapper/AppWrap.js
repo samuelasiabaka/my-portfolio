@@ -1,8 +1,9 @@
-import React from 'react'
-import { NavigationDots, SocialMedia } from '../components'
+import React from "react";
+import { NavigationDots, SocialMedia } from "../components";
 
 const AppWrap = (Component, idName, classNames) =>
   function HOC() {
+    const year = new Date().getFullYear();
     return (
       <div id={idName} className={`app__container ${classNames}`}>
         <SocialMedia />
@@ -11,13 +12,13 @@ const AppWrap = (Component, idName, classNames) =>
           <Component />
 
           <div className="copyright">
-            <p className="p-text">©2022 Samuel</p>
+            <p className="p-text">{year} Samuel</p>
             <p className="p-text">All rights reserved</p>
           </div>
         </div>
         <NavigationDots active={idName} />
       </div>
-    )
-  }
+    );
+  };
 
-export default AppWrap
+export default AppWrap;

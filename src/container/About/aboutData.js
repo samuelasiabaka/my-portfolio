@@ -1,22 +1,22 @@
-import { images } from '../../constants'
+import { images } from "../../constants";
 
 export const data = [
   {
-    title: 'Frontend',
+    title: "Frontend",
     description:
-      'I have passion for developing new user-facing features, determining the structure and design of web pages, building reusable codes.',
+      "I have passion for developing new user-facing features, determining the structure and design of web pages, building reusable codes.",
     imageUrl: images.frontend,
   },
   {
-    title: 'Backend',
+    title: "Fullstack",
     description:
-      'I love coding server-side web application logic as well as the integration of the front-end part.',
-    imageUrl: images.backend,
-  },
-  {
-    title: 'Fullstack',
-    description:
-      'I design user interactions on websites, develope servers and databases for website functionality and codes for mobile platforms.',
+      "I design user interactions on websites, develope servers and databases for website functionality and codes for web apps.",
     imageUrl: images.fullstack,
   },
-]
+  {
+    title: "Mobile",
+    description:
+      "I love developing user-facing features, determining the structure and design of mobile apps and building cross-platforms apps.",
+    imageUrl: images.mobileApp,
+  },
+];

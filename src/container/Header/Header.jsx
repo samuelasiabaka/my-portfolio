@@ -1,9 +1,9 @@
-import React from 'react'
-import { motion } from 'framer-motion'
+import React from "react";
+import { motion } from "framer-motion";
 
-import { AppWrap } from '../../wrapper'
-import { images } from '../../constants'
-import './Header.scss'
+import { AppWrap } from "../../wrapper";
+import { images } from "../../constants";
+import "./Header.scss";
 
 const scaleVariants = {
   whileInView: {
@@ -11,10 +11,10 @@ const scaleVariants = {
     opacity: [0, 1],
     transition: {
       duration: 1,
-      ease: 'easeInOut',
+      ease: "easeInOut",
     },
   },
-}
+};
 
 const Header = () => {
   return (
@@ -33,8 +33,8 @@ const Header = () => {
             </div>
           </div>
           <div className="tag-cmp app__flex">
-            <p className="p-text">Web Develover</p>
-            <p className="p-text">Fullstack</p>
+            <p className="p-text">Web & Mobile</p>
+            <p className="p-text">Developer</p>
           </div>
         </div>
       </motion.div>
@@ -46,7 +46,7 @@ const Header = () => {
         <img src={images.sam} alt="profile_bg" />
         <motion.img
           whileInView={{ scale: [0, 1] }}
-          transition={{ duration: 1, ease: 'easeInOut' }}
+          transition={{ duration: 1, ease: "easeInOut" }}
           className="overlay_circle"
           src={images.circle}
           alt="profile_circle"
@@ -64,7 +64,7 @@ const Header = () => {
         ))}
       </motion.div>
     </div>
-  )
-}
+  );
+};
 
-export default AppWrap(Header, 'home')
+export default AppWrap(Header, "home");
